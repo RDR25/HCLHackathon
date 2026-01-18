@@ -68,6 +68,7 @@ page = st.sidebar.radio(
         "Customer Segmentation",
         "Sales Analytics",
         "Product Performance",
+        "Promotional Effectiveness",
         "Admin Panel",
         "Data Summary"
     ]
@@ -320,7 +321,183 @@ elif page == "Sales Analytics":
         )
         st.plotly_chart(fig_cat, use_container_width=True)
 
-# PAGE 5: ADMIN PANEL
+# PAGE 5: PROMOTIONAL EFFECTIVENESS
+elif page == "Promotional Effectiveness":
+    st.subheader("📊 Promotional Effectiveness Tracking")
+    st.markdown("Track impact of bonus points and promotions on sales uplift")
+    
+    # Load promo effectiveness data
+    try:
+        promo_df = pd.read_csv('data/output/promo_effectiveness_after_bonus.csv')
+        
+        # Key Metrics
+        st.markdown("### 📈 Overall Performance Metrics")
+        col1, col2, col3, col4, col5 = st.columns(5)
+        
+        with col1:
+            avg_sales_uplift = promo_df['Sales_Uplift_Percent'].mean()
+            st.metric("Avg Sales Uplift", f"{avg_sales_uplift:.1f}%")
+        
+        with col2:
+            avg_transaction_uplift = promo_df['Transaction_Uplift_Percent'].mean()
+            st.metric("Avg Transaction Uplift", f"{avg_transaction_uplift:.1f}%")
+        
+        with col3:
+            avg_effectiveness = promo_df['Effectiveness_Score'].mean()
+            st.metric("Avg Effectiveness Score", f"{avg_effectiveness:.2f}")
+        
+        with col4:
+            avg_roi = promo_df['ROI_Percent'].mean()
+            st.metric("Avg ROI", f"{avg_roi:.1f}%")
+        
+        with col5:
+            total_promos = len(promo_df)
+            st.metric("Total Promotions", total_promos)
+        
+        st.markdown("---")
+        
+        # Sales Uplift by Promotion Type
+        st.markdown("### 💰 Sales Uplift by Promotion Type")
+        promo_uplift = promo_df.groupby('Promotion_Type').agg({
+            'Sales_Uplift_Percent': 'mean',
+            'After_Sales': 'sum',
+            'Before_Sales': 'sum'
+        }).reset_index()
+        
+        fig_uplift = px.bar(
+            promo_uplift,
+            x='Promotion_Type',
+            y='Sales_Uplift_Percent',
+            title='Average Sales Uplift by Promotion Type',
+            labels={'Sales_Uplift_Percent': 'Uplift %', 'Promotion_Type': 'Promotion Type'},
+            color='Sales_Uplift_Percent',
+            color_continuous_scale='Greens'
+        )
+        st.plotly_chart(fig_uplift, use_container_width=True)
+        
+        st.markdown("---")
+        
+        # Store Performance
+        st.markdown("### 🏪 Performance by Store")
+        store_perf = promo_df.groupby('Store_Location').agg({
+            'Sales_Uplift_Percent': 'mean',
+            'Transaction_Uplift_Percent': 'mean',
+            'Effectiveness_Score': 'mean',
+            'ROI_Percent': 'mean'
+        }).reset_index()
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            fig_store_sales = px.bar(
+                store_perf,
+                x='Store_Location',
+                y='Sales_Uplift_Percent',
+                title='Sales Uplift by Store',
+                labels={'Sales_Uplift_Percent': 'Uplift %'},
+                color='Sales_Uplift_Percent',
+                color_continuous_scale='Blues'
+            )
+            st.plotly_chart(fig_store_sales, use_container_width=True)
+        
+        with col2:
+            fig_store_roi = px.bar(
+                store_perf,
+                x='Store_Location',
+                y='ROI_Percent',
+                title='ROI by Store',
+                labels={'ROI_Percent': 'ROI %'},
+                color='ROI_Percent',
+                color_continuous_scale='Purples'
+            )
+            st.plotly_chart(fig_store_roi, use_container_width=True)
+        
+        st.markdown("---")
+        
+        # Before vs After Comparison
+        st.markdown("### 📊 Before vs After Comparison")
+        
+        col1, col2, col3 = st.columns(3)
+        
+        with col1:
+            total_before_sales = promo_df['Before_Sales'].sum()
+            total_after_sales = promo_df['After_Sales'].sum()
+            overall_uplift = ((total_after_sales - total_before_sales) / total_before_sales * 100)
+            
+            st.metric(
+                "Overall Sales Uplift",
+                f"${total_after_sales:,.0f}",
+                f"+{overall_uplift:.1f}%"
+            )
+        
+        with col2:
+            total_before_trans = promo_df['Before_Transaction_Count'].sum()
+            total_after_trans = promo_df['After_Transaction_Count'].sum()
+            trans_uplift = ((total_after_trans - total_before_trans) / total_before_trans * 100)
+            
+            st.metric(
+                "Overall Transaction Uplift",
+                f"{int(total_after_trans)}",
+                f"+{trans_uplift:.1f}%"
+            )
+        
+        with col3:
+            total_before_units = promo_df['Units_Sold_Before'].sum()
+            total_after_units = promo_df['Units_Sold_After'].sum()
+            units_uplift = ((total_after_units - total_before_units) / total_before_units * 100)
+            
+            st.metric(
+                "Overall Units Uplift",
+                f"{int(total_after_units)}",
+                f"+{units_uplift:.1f}%"
+            )
+        
+        st.markdown("---")
+        
+        # Effectiveness Score Distribution
+        st.markdown("### 🎯 Effectiveness Score Distribution")
+        
+        fig_effectiveness = px.scatter(
+            promo_df,
+            x='Sales_Uplift_Percent',
+            y='Effectiveness_Score',
+            color='Promotion_Type',
+            size='ROI_Percent',
+            hover_data=['Store_Location', 'ROI_Percent'],
+            title='Effectiveness Score vs Sales Uplift',
+            labels={'Sales_Uplift_Percent': 'Sales Uplift %', 'Effectiveness_Score': 'Effectiveness Score'}
+        )
+        st.plotly_chart(fig_effectiveness, use_container_width=True)
+        
+        st.markdown("---")
+        
+        # Detailed Promo Data Table
+        st.markdown("### 📋 Detailed Promotion Results")
+        
+        display_cols = ['Promotion_ID', 'Promotion_Type', 'Store_Location', 'Target_Segment', 
+                       'Bonus_Points_Offered', 'Sales_Uplift_Percent', 'Transaction_Uplift_Percent',
+                       'Effectiveness_Score', 'ROI_Percent', 'Status']
+        
+        st.dataframe(
+            promo_df[display_cols].sort_values('ROI_Percent', ascending=False),
+            use_container_width=True,
+            height=400
+        )
+        
+        st.markdown("---")
+        
+        # Top Performing Promos
+        st.markdown("### 🏆 Top Performing Promotions")
+        
+        top_promos = promo_df.nlargest(5, 'ROI_Percent')[['Promotion_ID', 'Promotion_Type', 'Store_Location', 'ROI_Percent', 'Sales_Uplift_Percent']]
+        
+        for idx, row in top_promos.iterrows():
+            st.success(f"✅ **{row['Promotion_ID']}** - {row['Promotion_Type']} ({row['Store_Location']}): ROI {row['ROI_Percent']:.1f}%, Sales Uplift {row['Sales_Uplift_Percent']:.1f}%")
+        
+    except Exception as e:
+        st.error(f"Error loading promotional effectiveness data: {e}")
+
+# PAGE 6: ADMIN PANEL
 elif page == "Admin Panel":
     st.subheader("⚙️ Admin Control Panel")
     st.markdown("Manage promotions, discounts, loyalty points, and special offers")
