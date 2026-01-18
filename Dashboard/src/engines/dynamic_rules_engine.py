@@ -348,8 +348,8 @@ class DynamicRulesEngine:
                 recommendation['Discount_Offer'] = 0.10
                 recommendation['Action'] = 'Send welcome series + onboarding'
             
-            elif segment == 'Lost':
-                recommendation['Recommendation'] = "Lost Customer - Aggressive re-engagement"
+            elif segment == 'Risk':
+                recommendation['Recommendation'] = "Risk Customer - Aggressive re-engagement"
                 recommendation['Bonus_Points'] = 1000
                 recommendation['Discount_Offer'] = 0.30
                 recommendation['Action'] = 'Premium re-engagement campaign'

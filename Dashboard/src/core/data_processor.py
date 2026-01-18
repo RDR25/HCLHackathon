@@ -142,9 +142,9 @@ class DataProcessor:
             # New customers
             elif (r_score >= 4 and f_score <= 2 and m_score <= 2):
                 segment = "New Customers"
-            # Lost
+            # At Risk
             else:
-                segment = "Lost Customers"
+                segment = "Risk Customers"
             
             segments.append(segment)
         
