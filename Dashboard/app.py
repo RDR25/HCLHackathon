@@ -356,6 +356,99 @@ elif page == "Promotional Effectiveness":
         
         st.markdown("---")
         
+        # SIMULATION MODE: Test New Offers
+        st.markdown("### 🎯 Promotion Impact Simulator - Test New Offers")
+        st.markdown("Enter a new promotion offer below to see predicted impact on metrics")
+        
+        sim_col1, sim_col2, sim_col3 = st.columns(3)
+        
+        with sim_col1:
+            promo_type_sim = st.selectbox(
+                "Promotion Type",
+                ["Risk Customer Re-engagement", "Least Active Customer Bonus", 
+                 "Electronics Category Boost", "Health Category Boost", "Loyalty Tier Premium",
+                 "Flash Sale", "Weekend Bundle", "Festival Special"]
+            )
+        
+        with sim_col2:
+            bonus_points_sim = st.number_input(
+                "Bonus Points Offered",
+                min_value=100,
+                max_value=5000,
+                value=1000,
+                step=100
+            )
+        
+        with sim_col3:
+            store_location_sim = st.selectbox(
+                "Store Location",
+                ["Delhi", "Hyderabad", "Warangal", "Guntur", "Bangalore"]
+            )
+        
+        sim_col4, sim_col5, sim_col6 = st.columns(3)
+        
+        with sim_col4:
+            target_segment_sim = st.selectbox(
+                "Target Segment",
+                ["All Customers", "Risk Customers", "Least Active Customers", 
+                 "Loyalists", "Platinum Customers", "Champions"]
+            )
+        
+        with sim_col5:
+            before_sales_sim = st.number_input(
+                "Estimated Before Sales ($)",
+                min_value=100.0,
+                max_value=50000.0,
+                value=5000.0,
+                step=100.0
+            )
+        
+        with sim_col6:
+            expected_uplift_sim = st.number_input(
+                "Expected Sales Uplift (%)",
+                min_value=5.0,
+                max_value=150.0,
+                value=60.0,
+                step=5.0
+            )
+        
+        if st.button("📊 Calculate Promotion Impact", key="sim_calc"):
+            # Calculate projected metrics
+            after_sales_sim = before_sales_sim * (1 + expected_uplift_sim / 100)
+            sales_uplift_sim = expected_uplift_sim
+            roi_sim = (sales_uplift_sim * before_sales_sim) / bonus_points_sim
+            effectiveness_sim = (sales_uplift_sim + roi_sim) / 2.5
+            
+            sim_col_res1, sim_col_res2, sim_col_res3, sim_col_res4 = st.columns(4)
+            
+            with sim_col_res1:
+                st.metric("📈 Sales Uplift %", f"{sales_uplift_sim:.1f}%")
+            
+            with sim_col_res2:
+                st.metric("💰 After Sales", f"${after_sales_sim:.2f}")
+            
+            with sim_col_res3:
+                st.metric("💹 Projected ROI %", f"{roi_sim:.1f}%")
+            
+            with sim_col_res4:
+                st.metric("⭐ Effectiveness Score", f"{effectiveness_sim:.1f}")
+            
+            st.success(f"""
+            ✅ **Promotion Impact Summary:**
+            - Promotion Type: **{promo_type_sim}**
+            - Store: **{store_location_sim}**
+            - Target: **{target_segment_sim}**
+            - Bonus Points: **{bonus_points_sim}** points
+            - Before Sales: **${before_sales_sim:,.2f}**
+            - Projected After Sales: **${after_sales_sim:,.2f}**
+            - Additional Revenue: **${after_sales_sim - before_sales_sim:,.2f}**
+            - Sales Uplift: **{sales_uplift_sim:.1f}%**
+            - ROI: **{roi_sim:.1f}%** (Additional revenue per rupee spent)
+            - Effectiveness Score: **{effectiveness_sim:.1f}** (0-200 scale)
+            """)
+        
+        st.markdown("---")
+        
         # Sales Uplift by Promotion Type
         st.markdown("### 💰 Sales Uplift by Promotion Type")
         promo_uplift = promo_df.groupby('Promotion_Type').agg({
