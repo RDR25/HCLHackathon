@@ -1,13 +1,13 @@
 # Retail Loyalty Analytics Platform (Hackathon MVP)
 
-## 📌 Project Overview
+##  Project Overview
 The **Retail Loyalty Analytics Platform** is an end-to-end data engineering and analytics solution designed to help retailers analyze customer behavior, calculate loyalty points, and segment customers using RFM (Recency, Frequency, Monetary) analysis.  
 
 The platform ingests raw retail transaction data, applies data quality validations, computes loyalty metrics, identifies high-value and at-risk customers, and presents insights through analytics-ready data marts and dashboards.
 
 ---
 
-## 🎯 Business Use Case
+##  Business Use Case
 Retailers deal with large volumes of transactional data across stores and channels. This project enables retailers to:
 - Automate ingestion and validation of sales data
 - Calculate loyalty points accurately
@@ -17,7 +17,7 @@ Retailers deal with large volumes of transactional data across stores and channe
 
 ---
 
-## 🏗️ High-Level Architecture
+##  High-Level Architecture
 **Data Flow:**
 
 Source Data (CSV / GenAI)  
@@ -33,7 +33,7 @@ Source Data (CSV / GenAI)
 
 ---
 
-## 🧩 Key Components
+##  Key Components
 
 ### 1. Data Ingestion Layer
 - Loads CSV or GenAI-generated datasets
@@ -82,7 +82,7 @@ Customer segments include:
 
 ---
 
-## 🛠️ Technology Stack
+##  Technology Stack
 - **Language:** Python
 - **Database:** PostgreSQL / Snowflake / MySQL
 - **ETL:** Python (Pandas)
@@ -91,11 +91,11 @@ Customer segments include:
 
 ---
 
-## 👥 Team Task Breakdown (3-Member Team)
+##  Team Task Breakdown (3-Member Team)
 
 To ensure parallel development and timely delivery of the MVP, tasks were divided across team members based on system layers and responsibilities.
 
-### 🔹 Team Member 1 – Data Engineering & Ingestion
+###  Team Member 1 – Data Engineering & Ingestion
 **Responsibilities:**
 - Design source data formats (Customers, Products, Promotions, Sales)
 - Implement CSV / GenAI data ingestion using Python
@@ -110,7 +110,7 @@ To ensure parallel development and timely delivery of the MVP, tasks were divide
 
 ---
 
-### 🔹 Team Member 2 – Data Quality, Business Logic & Analytics
+###  Team Member 2 – Data Quality, Business Logic & Analytics
 **Responsibilities:**
 - Implement Data Quality Engine (null checks, duplicates, FK validation)
 - Build Loyalty Points Engine
@@ -126,7 +126,7 @@ To ensure parallel development and timely delivery of the MVP, tasks were divide
 
 ---
 
-### 🔹 Team Member 3 – Visualization, Integration & Documentation
+###  Team Member 3 – Visualization, Integration & Documentation
 **Responsibilities:**
 - Design and build dashboards (Power BI / Tableau / Streamlit)
 - Integrate dashboards with analytics data marts
@@ -142,7 +142,7 @@ To ensure parallel development and timely delivery of the MVP, tasks were divide
 
 ---
 
-## 🤝 Collaboration Model
+##  Collaboration Model
 - GitHub used for version control and collaboration
 - Feature-based branching strategy
 - Regular integration and testing
