@@ -1,0 +1,21 @@
+Customer_ID,Segment,Product_ID,Discount_Percentage,Recommendation,Generated_Date
+CUST_001,Lost Customers,SKU_028,10,Personalized recommendations,2026-01-18
+CUST_002,New Customers,SKU_002,10,Personalized recommendations,2026-01-18
+CUST_003,Champions,SKU_040,20,Premium products with VIP discount,2026-01-18
+CUST_004,Lost Customers,SKU_027,10,Personalized recommendations,2026-01-18
+CUST_005,Lost Customers,SKU_035,10,Personalized recommendations,2026-01-18
+CUST_006,Lost Customers,SKU_015,10,Personalized recommendations,2026-01-18
+CUST_007,Lost Customers,SKU_026,10,Personalized recommendations,2026-01-18
+CUST_008,New Customers,SKU_024,10,Personalized recommendations,2026-01-18
+CUST_009,New Customers,SKU_030,10,Personalized recommendations,2026-01-18
+CUST_011,Lost Customers,SKU_026,10,Personalized recommendations,2026-01-18
+CUST_012,New Customers,SKU_018,10,Personalized recommendations,2026-01-18
+CUST_013,Lost Customers,SKU_046,10,Personalized recommendations,2026-01-18
+CUST_014,Lost Customers,SKU_024,10,Personalized recommendations,2026-01-18
+CUST_015,Lost Customers,SKU_020,10,Personalized recommendations,2026-01-18
+CUST_019,Lost Customers,SKU_015,10,Personalized recommendations,2026-01-18
+CUST_020,Loyal Customers,SKU_028,10,Continue with preferred categories,2026-01-18
+CUST_021,Lost Customers,SKU_024,10,Personalized recommendations,2026-01-18
+CUST_022,Lost Customers,SKU_021,10,Personalized recommendations,2026-01-18
+CUST_024,Lost Customers,SKU_029,10,Personalized recommendations,2026-01-18
+CUST_025,Loyal Customers,SKU_008,10,Continue with preferred categories,2026-01-18
