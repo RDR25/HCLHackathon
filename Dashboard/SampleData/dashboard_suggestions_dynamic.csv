@@ -1,0 +1,8 @@
+Category,Item,Details,Priority
+Low_Selling_Products,SKU_005,"Sales: $1205.60, Action: Apply 15-25% discount",HIGH
+Low_Selling_Products,SKU_007,"Sales: $1036.86, Action: Apply 15-25% discount",HIGH
+Low_Selling_Products,SKU_009,"Sales: $1999.50, Action: Apply 15-25% discount",HIGH
+Low_Selling_Products,SKU_010,"Sales: $1933.25, Action: Apply 15-25% discount",HIGH
+Low_Selling_Products,SKU_012,"Sales: $419.76, Action: Apply 15-25% discount",HIGH
+Retention_Alert,2 customers with low point balance,Action: Launch point multiplier campaign,MEDIUM
+Retention_Alert,19 customers with low engagement,Action: Send personalized offers,HIGH

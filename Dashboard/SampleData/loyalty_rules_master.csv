@@ -1,0 +1,4 @@
+Rule_ID,Rule_Name,Multiplier,Trigger_Category
+1,Standard Earn,1.0,All
+2,Health Bonus (2x),2.0,Health
+3,Electronics Bonus (1.5x),1.5,Electronics
