@@ -91,4 +91,65 @@ Customer segments include:
 
 ---
 
-## 📂 Project Structure
+## 👥 Team Task Breakdown (3-Member Team)
+
+To ensure parallel development and timely delivery of the MVP, tasks were divided across team members based on system layers and responsibilities.
+
+### 🔹 Team Member 1 – Data Engineering & Ingestion
+**Responsibilities:**
+- Design source data formats (Customers, Products, Promotions, Sales)
+- Implement CSV / GenAI data ingestion using Python
+- Create Landing (Raw) tables in the database
+- Ensure schema consistency and data loading reliability
+
+**Key Deliverables:**
+- Ingestion scripts
+- Raw data tables
+- Sample datasets
+- Documentation for data sources
+
+---
+
+### 🔹 Team Member 2 – Data Quality, Business Logic & Analytics
+**Responsibilities:**
+- Implement Data Quality Engine (null checks, duplicates, FK validation)
+- Build Loyalty Points Engine
+- Implement RFM (Recency, Frequency, Monetary) calculations
+- Develop customer segmentation logic (High Spenders, At-Risk, Others)
+- Create clean tables and analytics-ready data marts
+
+**Key Deliverables:**
+- Data validation scripts
+- Loyalty and RFM calculation modules
+- Segmentation logic
+- Aggregated data mart tables
+
+---
+
+### 🔹 Team Member 3 – Visualization, Integration & Documentation
+**Responsibilities:**
+- Design and build dashboards (Power BI / Tableau / Streamlit)
+- Integrate dashboards with analytics data marts
+- Create architecture and ER diagrams
+- Maintain README and project documentation
+- Coordinate GitHub version control and final integration
+
+**Key Deliverables:**
+- Interactive dashboards
+- Architecture & ER diagrams
+- GitHub repository management
+- Final documentation and demo preparation
+
+---
+
+## 🤝 Collaboration Model
+- GitHub used for version control and collaboration
+- Feature-based branching strategy
+- Regular integration and testing
+- Clear ownership with cross-review of code and outputs
+
+---
+
+## 🏁 Outcome
+This task distribution enabled parallel development across ingestion, processing, and visualization layers, resulting in a fully functional end-to-end Retail Loyalty Analytics MVP within hackathon timelines.
+
